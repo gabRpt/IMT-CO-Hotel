@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/HotelManagment/src-gen" creationIcons="false"
+    editDirectory="/HotelManagment.edit/src-gen" editorDirectory="/HotelManagment.editor/src-gen"
+    modelPluginID="HotelManagment" modelName="HotelManagment" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>hotelManagment.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="HotelManagment" disposableProviderFactory="true" ecorePackage="hotelManagment.ecore#/">
+    <genClasses ecoreClass="hotelManagment.ecore#//Personnel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Personnel/nom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Personnel/prenom"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hotelManagment.ecore#//Personnel/chambre"/>
+    </genClasses>
+    <genClasses ecoreClass="hotelManagment.ecore#//Chambre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Chambre/numero"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Chambre/nbLits"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Chambre/prix"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hotelManagment.ecore#//Chambre/personnel"/>
+    </genClasses>
+    <genClasses ecoreClass="hotelManagment.ecore#//Hotel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Hotel/nom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Hotel/adresse"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Hotel/categorie"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Hotel/chiffreAffaire"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hotelManagment.ecore#//Hotel/reserveration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hotelManagment.ecore#//Hotel/chambre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hotelManagment.ecore#//Hotel/client"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hotelManagment.ecore#//Hotel/personnel"/>
+    </genClasses>
+    <genClasses ecoreClass="hotelManagment.ecore#//Client">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Client/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Client/nom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Client/prenom"/>
+    </genClasses>
+    <genClasses ecoreClass="hotelManagment.ecore#//Reservation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Reservation/idClient"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Reservation/numChambre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Reservation/date"/>
+    </genClasses>
+    <genClasses ecoreClass="hotelManagment.ecore#//Presidentielle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Presidentielle/nbTV"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Presidentielle/nbSdB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hotelManagment.ecore#//Presidentielle/balcon"/>
+    </genClasses>
+    <genClasses ecoreClass="hotelManagment.ecore#//Classique"/>
+  </genPackages>
+</genmodel:GenModel>
