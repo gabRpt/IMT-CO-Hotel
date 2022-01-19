@@ -91,40 +91,11 @@ public class Main {
 		myHotel.getReserveration().add(steveJobsReservation);
 		myHotel.getReserveration().add(bobRossReservation);
 		
+		ResourceTools myResourceTools = new ResourceTools();
+		myResourceTools.saveResource("model.xmi", myHotel);
 		
-		//Génération d'un fichier XMI
-		// Création d'un ResourceSet
-		ResourceSet rs = new ResourceSetImpl();
-
-		// Mapping entre l'extension du fichier du modèle et le format de sérialisation (xmi)
-		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-		    "xmi",
-		    new XMIResourceFactoryImpl()
-		);
-		// Enregistrement de notre métamodèle dans la liste des métamodèles connus
-		rs.getPackageRegistry().put(
-				HotelManagmentPackage.eNS_URI,
-				HotelManagmentPackage.eINSTANCE
-		);
-		
-		// Création de la ressource avec un chemin de fichier où sauvegarder le modèle
-		Resource resource = rs.createResource(URI.createFileURI("modele.xmi"));
-		// attention, URI -> org.eclipse.emf.common.util.URI
-
-		Hotel racineModele = myHotel; // notre modèle que l'on a créé avec la factory 
-
-		// On ajoute notre modèle dans la ressource
-		resource.getContents().add(racineModele);
-		
-		// la méthode save de la Resource accepte une map contenant les options de sérialisation
-		try {
-		    resource.save(Collections.EMPTY_MAP);
-		}
-		catch (IOException e) {
-		    System.out.println("erreur durant la sauvegarde du modèle : " + e.getMessage());
-		}
-		
-		Resource resource2 = rs.getResource(URI.createFileURI("modele.xmi"),true);
-		Hotel racineModel2 = (Hotel)(resource2.getContents().get(0));		
+		Resource rr = myResourceTools.getResource("model.xmi");
+		Hotel hotel = (Hotel)(rr.getContents().get(0));
+		System.out.println(hotel.getAdresse());
 	}
 }
