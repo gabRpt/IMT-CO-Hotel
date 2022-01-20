@@ -1,34 +1,15 @@
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-
-import hotelManagment.Chambre;
 import hotelManagment.Hotel;
 import hotelManagment.HotelManagmentFactory;
 import hotelManagment.Reservation;
-import hotelManagment.impl.ChambreImpl;
 import hotelManagment.impl.ReservationImpl;
 
 public class ManageHotel {
 	private Hotel hotel;
 	private HotelManagmentFactory hotelFactory;
-	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy", Locale.FRANCE);
 	
 	public ManageHotel(Hotel hotel, HotelManagmentFactory hotelFactory) {
 		// TODO Auto-generated constructor stub
@@ -38,7 +19,7 @@ public class ManageHotel {
 	
 	//Pour chaque attribut, demande la valeur à l'utilisateur
 	//Retourne un map "nomAttribut":"valeur entrée par l'user"
-	public Map<String, String> getFieldsValues(Field[] classFields) {
+	private Map<String, String> getFieldsValues(Field[] classFields) {
 		Map<String, String> myMap = new HashMap<String, String>();
 		String fieldValue = "";
 		String currentAttributeName = "";
@@ -86,17 +67,71 @@ public class ManageHotel {
 			case '1':
 				//TODO Gérer les exceptions
 				myMap = this.getFieldsValues(classFields);
-				if(myMap.get("date").matches("*/*/*")) {
-					Reservation newReservation = this.hotelFactory.createReservation();
-					newReservation.setIdClient(Integer.parseInt(myMap.get("idClient")));
-					newReservation.setNumChambre(Integer.parseInt(myMap.get("numChambre")));
-					newReservation.setDate(null); //TODO Date
-					
-					this.hotel.getReserveration().add(newReservation);
-				}
+				
+				Reservation newReservation = this.hotelFactory.createReservation();
+				newReservation.setIdClient(Integer.parseInt(myMap.get("idClient")));
+				newReservation.setNumChambre(Integer.parseInt(myMap.get("numChambre")));
+				newReservation.setDate(null); //TODO Date
+				this.hotel.getReserveration().add(newReservation);
+				
 				break;
 				
-			case '2':
+			case '2':{
+				System.out.println("Entrez l'identifiant client");
+				int idClient = Integer.parseInt(Console.recupererUneEntree());
+				
+				System.out.println("Entrez le numéro de chambre");
+				int numChambre = Integer.parseInt(Console.recupererUneEntree());
+				
+				boolean edited = false;
+				
+				for (Reservation reservation : this.hotel.getReserveration()) {
+					if (reservation.getIdClient() == idClient && reservation.getNumChambre() == numChambre) {
+						myMap = this.getFieldsValues(classFields);						
+						reservation.setIdClient(Integer.parseInt(myMap.get("idClient")));
+						reservation.setNumChambre(Integer.parseInt(myMap.get("numChambre")));
+						reservation.setDate(null); //TODO Date
+						
+						edited = true;
+						break;
+					}
+				}
+				
+				if (edited) {					
+					System.out.println("Edité avec succès");
+				} else {
+					System.out.println("Problème lors de l'édition");
+				}
+				
+				break;
+			}
+				
+			case '3':{
+				System.out.println("Entrez l'identifiant client");
+				int idClient = Integer.parseInt(Console.recupererUneEntree());
+				
+				System.out.println("Entrez le numéro de chambre");
+				int numChambre = Integer.parseInt(Console.recupererUneEntree());
+				
+				boolean deleted = false;
+								
+				for (Reservation reservation : this.hotel.getReserveration()) {
+					if (reservation.getIdClient() == idClient && reservation.getNumChambre() == numChambre) {
+						this.hotel.getReserveration().remove(reservation);
+						deleted = true;
+						break;
+					}
+				}
+				
+				if (deleted) {					
+					System.out.println("Edité avec succès");
+				} else {
+					System.out.println("Problème lors de l'édition");
+				}
+				break;
+			}
+				
+			case '4':
 				System.out.println("Entrez l'identifiant client");
 				int idClient = Integer.parseInt(Console.recupererUneEntree());
 				
@@ -105,20 +140,14 @@ public class ManageHotel {
 				
 				for (Reservation reservation : this.hotel.getReserveration()) {
 					if (reservation.getIdClient() == idClient && reservation.getNumChambre() == numChambre) {
-						
+						System.out.println(
+							"idClient: "+reservation.getIdClient()+
+							"\nnumChambre: "+reservation.getNumChambre()+
+							"\ndate: "+reservation.getDate()
+						);
 						break;
 					}
 				}
-				
-				System.out.println("reacheable");
-				break;
-				
-			case '3':
-				
-				break;
-				
-			case '4':
-				
 				break;
 				
 			case '5':				
