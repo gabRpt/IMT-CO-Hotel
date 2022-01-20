@@ -63,7 +63,7 @@ public class User {
 	}
 
 	void managerHotel(Hotel hotel) {
-		ManageHotel mHotelManager = new ManageHotel(hotel);
+		ManageHotel mHotelManager = new ManageHotel(hotel,this.myHotelFactory);
 		Console.afficherChoixPrincicpaux(hotel);
 		String userInput = Console.recupererUneEntree();
 		mHotelManager.manageUserInput(userInput);
