@@ -7,6 +7,8 @@ public class User {
 
 	public ResourceTools myResourceTools;
 	public HotelManagmentFactory myHotelFactory;
+	private Hotel myHotel;
+	private String modelFilename;
 	
 	public User(ResourceTools ressource,HotelManagmentFactory hotelFactory) {
 		this.myResourceTools = ressource;
@@ -41,39 +43,43 @@ public class User {
 	
 	private void creerHotel() {		
 
-		Hotel myHotel = this.myHotelFactory.createHotel();
+		this.myHotel = this.myHotelFactory.createHotel();
 		
 		Console.afficherChoixNomHotel();
-		myHotel.setNom(Console.recupererUneEntree());
+		this.myHotel.setNom(Console.recupererUneEntree());
 		
-		Console.afficherChoixCreationCheminAcces();
-		this.myResourceTools.saveResource(Console.recupererUneEntree(), myHotel);
-		
-		this.managerHotel(myHotel);
-		
+		this.sauvegarderHotel();		
+		this.managerHotel();
 	}
 
 	void chargerHotel() {
-		
 		Console.afficherChoixCheminAcces();
 		
 		try {
-			Resource rr = this.myResourceTools.getResource(Console.recupererUneEntree());
-			Hotel hotel = (Hotel)(rr.getContents().get(0));
-			managerHotel(hotel);
+			this.modelFilename = Console.recupererUneEntree();
+			Resource rr = this.myResourceTools.getResource(this.modelFilename);
+			this.myHotel = (Hotel)(rr.getContents().get(0));
+			managerHotel();
 		}catch (Exception e) {
 			throw new IllegalArgumentException("Erreur dans le choix !");
 		}		
 	}
 
-	void managerHotel(Hotel hotel) {
-		ManageHotel mHotelManager = new ManageHotel(hotel,this.myHotelFactory);
-		Console.afficherChoixPrincicpaux(hotel);
+	void managerHotel() {
+		ManageHotel mHotelManager = new ManageHotel(this.myHotel,this.myHotelFactory);
+		Console.afficherChoixPrincicpaux(this.myHotel);
 		String userInput = Console.recupererUneEntree();
 		
 		while(mHotelManager.manageUserInput(userInput)) {
-			Console.afficherChoixPrincicpaux(hotel);
+			Console.afficherChoixPrincicpaux(this.myHotel);
 			userInput = Console.recupererUneEntree();
 		}
+		
+		this.sauvegarderHotel();
+	}
+	
+	void sauvegarderHotel() {
+		Console.afficherChoixCreationCheminAcces();
+		this.myResourceTools.saveResource(Console.recupererUneEntree(), this.myHotel);
 	}
 }

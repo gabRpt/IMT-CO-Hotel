@@ -55,7 +55,6 @@ public class ManageHotel {
 				break;
 	
 			case '5':
-				System.out.println("TODO Save");
 				continueHotelManagement = false;
 				break;
 			default:

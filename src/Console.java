@@ -1,4 +1,3 @@
-import java.lang.reflect.Field;
 import java.util.Scanner;
 
 import hotelManagment.Hotel;
@@ -17,7 +16,8 @@ public class Console {
 	}
 	
 	public static void afficherChoixCreationCheminAcces() {
-		System.out.println("Quel sera le chemin d'accès du modele ?");
+		System.out.println("Entrez le nom du fichier dans le format suivant:  exemple.xmi");
+		System.out.println("Attention, si le fichier existe déjà il sera écrasé");
 	}
 	
 	public static void afficherChoixCheminAcces() {
