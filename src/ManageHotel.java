@@ -34,28 +34,35 @@ public class ManageHotel {
 		return myMap;
 	}
 	
-	public void manageUserInput(String userInput) {
-		char userInputSecondChar = userInput.charAt(1);
+	public boolean manageUserInput(String userInput) {
+		boolean continueHotelManagement = true;
+
 		switch (userInput.charAt(0)) {
 			case '1':
-				this.reservation(userInputSecondChar);
+				this.reservation(userInput.charAt(1));
 				break;
 				
 			case '2':
-				this.chambre(userInputSecondChar);
+				this.chambre(userInput.charAt(1));
 				break;
 				
 			case '3':
-				this.personnel(userInputSecondChar);
+				this.personnel(userInput.charAt(1));
 				break;
 				
 			case '4':
-				this.client(userInputSecondChar);
+				this.client(userInput.charAt(1));
 				break;
 	
+			case '5':
+				System.out.println("TODO Save");
+				continueHotelManagement = false;
+				break;
 			default:
+				continueHotelManagement = false;
 				break;
 		}
+		return continueHotelManagement;
 	}
 	
 	
@@ -152,7 +159,6 @@ public class ManageHotel {
 				
 			case '5':				
 				this.hotel.getReserveration().stream().forEach(System.out::println);
-				
 				break;
 	
 			default:
