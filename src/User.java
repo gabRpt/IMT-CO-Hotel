@@ -14,25 +14,29 @@ public class User {
 	}
 	
 	void debutProgramme() {
+		boolean continueProgram = true;
 		
-		Console.afficherChoixCreationOuImportation();
+		while(continueProgram) {
+			Console.afficherChoixCreationOuImportation();
+			switch (Console.recupererUneEntree()) {
+		        case "1": {
+		        	chargerHotel();
+		            break;
+		        }
+		        case "2": {
+		        	creerHotel();
+		            break;
+		        }
+		        case "3": {
+		        	continueProgram = false;
+		            break;
+		        }
+		        default:
+		            throw new IllegalArgumentException("Erreur dans le choix !");
+	       }
+		}
 		
-		switch (Console.recupererUneEntree()) {
-	        case "1": {
-	        	chargerHotel();
-	            break;
-	        }
-	        case "2": {
-	        	creerHotel();
-	            break;
-	        }
-	        case "3": {
-	        	System.exit(0);
-	            break;
-	        }
-	        default:
-	            throw new IllegalArgumentException("Erreur dans le choix !");
-        }
+		System.exit(0);
 	}
 	
 	private void creerHotel() {		
@@ -66,6 +70,10 @@ public class User {
 		ManageHotel mHotelManager = new ManageHotel(hotel,this.myHotelFactory);
 		Console.afficherChoixPrincicpaux(hotel);
 		String userInput = Console.recupererUneEntree();
-		mHotelManager.manageUserInput(userInput);
+		
+		while(mHotelManager.manageUserInput(userInput)) {
+			Console.afficherChoixPrincicpaux(hotel);
+			userInput = Console.recupererUneEntree();
+		}
 	}
 }
