@@ -60,6 +60,12 @@ public class Console {
 		System.out.println("\n5 - Quitter et enregistrer");
 	}
 	
+	public static void afficherChoixClassiqueOuPresidentielle() {
+		System.out.println("Voulez vous créer :");
+		System.out.println("1 - Une chambre classique");
+		System.out.println("2 - Une chambre presidentielle");
+	}
+	
 	public static String recupererUneEntree() {
 		Scanner scan = new Scanner(System.in);
 		return scan.nextLine();
