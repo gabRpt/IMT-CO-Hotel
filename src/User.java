@@ -18,20 +18,20 @@ public class User {
 		Console.afficherChoixCreationOuImportation();
 		
 		switch (Console.recupererUneEntree()) {
-        case "1": {
-        	chargerHotel();
-            break;
-        }
-        case "2": {
-        	creerHotel();
-            break;
-        }
-        case "3": {
-        	System.exit(0);
-            break;
-        }
-        default:
-            throw new IllegalArgumentException("Erreur dans le choix !");
+	        case "1": {
+	        	chargerHotel();
+	            break;
+	        }
+	        case "2": {
+	        	creerHotel();
+	            break;
+	        }
+	        case "3": {
+	        	System.exit(0);
+	            break;
+	        }
+	        default:
+	            throw new IllegalArgumentException("Erreur dans le choix !");
         }
 	}
 	
@@ -59,17 +59,13 @@ public class User {
 			managerHotel(hotel);
 		}catch (Exception e) {
 			throw new IllegalArgumentException("Erreur dans le choix !");
-		}
-		
-		
-		
+		}		
 	}
 
 	void managerHotel(Hotel hotel) {
+		ManageHotel mHotelManager = new ManageHotel(hotel);
 		Console.afficherChoixPrincicpaux(hotel);
-
+		String userInput = Console.recupererUneEntree();
+		mHotelManager.manageUserInput(userInput);
 	}
-	
-	
-	
 }

@@ -1,3 +1,4 @@
+import java.lang.reflect.Field;
 import java.util.Scanner;
 
 import hotelManagment.Hotel;
@@ -24,7 +25,7 @@ public class Console {
 	}
 	
 	public static void afficherChoixPrincicpaux(Hotel hotel) {
-		System.out.println("Bienvenue dans l'hotel : " + hotel.getNom());
+		System.out.println("\nBienvenue dans l'hotel : " + hotel.getNom());
 		
 		System.out.println("Que voulez vous faire ?\n");
 		
@@ -62,7 +63,5 @@ public class Console {
 	public static String recupererUneEntree() {
 		Scanner scan = new Scanner(System.in);
 		return scan.nextLine();
-	}
-	
-	
+	}	
 }
