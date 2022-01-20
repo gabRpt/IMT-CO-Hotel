@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<hotelManagment:Hotel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hotelManagment="http://www.example.org/hotelManagment" nom="Papeete Hotel" adresse="3 rue des fleurs, Papeete" categorie="Luxe" chiffreAffaire="5000000">
+  <reserveration idClient="2" numChambre="101"/>
+  <reserveration idClient="1" numChambre="200"/>
+  <reserveration idClient="3" numChambre="300"/>
+  <chambre xsi:type="hotelManagment:Classique" numero="101" nbLits="1" prix="20.0"/>
+  <chambre xsi:type="hotelManagment:Classique" numero="102" nbLits="1" prix="20.0"/>
+  <chambre xsi:type="hotelManagment:Classique" numero="103" nbLits="1" prix="20.0"/>
+  <chambre xsi:type="hotelManagment:Presidentielle" numero="200" nbLits="3" prix="400.0" nbTV="3" nbSdB="2" balcon="true"/>
+  <client id="2" nom="Jobs" prenom="Steve"/>
+  <client id="1" nom="Ross" prenom="Bob"/>
+  <personnel nom="Maystre" prenom="Antonin"/>
+  <personnel nom="Raapoto" prenom="Gabin"/>
+</hotelManagment:Hotel>
