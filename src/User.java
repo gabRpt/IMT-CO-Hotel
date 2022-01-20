@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import org.eclipse.emf.ecore.resource.Resource;
 
 import hotelManagment.Hotel;
@@ -68,7 +66,7 @@ public class User {
 	}
 
 	void managerHotel(Hotel hotel) {
-		
+		Console.afficherChoixPrincicpaux(hotel);
 
 	}
 	

@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import hotelManagment.Hotel;
+
 public class Console {
 	
 	public static void afficherChoixCreationOuImportation() {
@@ -21,7 +23,7 @@ public class Console {
 		System.out.println("Quel sera le chemin d'accès du modele ?");
 	}
 	
-	public static void afficherChoixPrincicpaux() {
+	public static void afficherChoixPrincicpaux(Hotel hotel) {
 		System.out.println("Bienvenue dans l'hotel : " + hotel.getNom());
 		
 		System.out.println("Que voulez vous faire ?\n");
